@@ -8,7 +8,7 @@ function Header({text, show, setShow}) {
   return (
     <div className='header'>
         <h1>{text}</h1>
-        <Button onClick={onClick} color='green' text='Add' />
+        <Button onClick={onClick} color={show? 'red': 'green'} text={show? 'Close': 'Add'} />
     </div>
   )
 }
