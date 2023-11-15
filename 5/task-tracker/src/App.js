@@ -25,6 +25,8 @@ function App() {
     }
   ])
 
+  let [showForm, setShowForm] = useState(false)
+
   // delete function
   let onDelete = (id) => {
     setTasks(tasks.filter(task => task.id !== id))
@@ -42,11 +44,18 @@ function App() {
     }))
   }
 
+  // add task
+  let addNewTask = (task) => {
+    let newTask = {...task, id: Math.floor(Math.random() * 10000) + 1}
+    setTasks([...tasks, newTask])
+  }
+
   return (
     <div className="container">
-      <Header />
+      <Header show={showForm} setShow={setShowForm} />
+      {showForm? <AddTask onAdd={addNewTask} /> : <></>}
       {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={onDelete} onToggle={onToggle} /> : <p>No tasks available</p>}
-      <AddTask />
+      
     </div>
   );
 }
